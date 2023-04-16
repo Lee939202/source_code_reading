@@ -132,7 +132,8 @@ class Linear(nn.Linear, LoRALayer):
     r 是 LoRA 模型的参数之一，控制模型的稀疏性。
     lora_alpha 和 lora_dropout 是控制模型训练的参数。
     fan_in_fan_out 和 merge_weights 用于指示输入和输出特征是否需要交换，并指示是否应该合并预先训练的权重矩阵和 LoRA 参数。
-    fan_in和fan_out是指一个全连接层（或者卷积层）的输入和输出通道数量。对于全连接层，fan_in指的是输入特征的数量，而fan_out指的是输出特征的数量。对于卷积层，fan_in指的是输入通道的数量，fan_out指的是输出通道的数量。
+    fan_in和fan_out是指一个全连接层（或者卷积层）的输入和输出通道数量。对于全连接层，fan_in指的是输入特征的数量，而fan_out指的是输出特征的数量。
+    对于卷积层，fan_in指的是输入通道的数量，fan_out指的是输出通道的数量。
 
     fan_in_fan_out是一个bool类型的参数，当它被设置为True时，表示该层的权重参数将按照(fan_in, fan_out)的形状存储。
     否则，权重参数将按照(fan_out, fan_in)的形状存储。
@@ -474,3 +475,4 @@ class Conv2d(nn.Conv2d, LoRALayer):
                 self.bias, self.stride, self.padding, self.dilation, self.groups
             )
         return nn.Conv2d.forward(self, x)
+
